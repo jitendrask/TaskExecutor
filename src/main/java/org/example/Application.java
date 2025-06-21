@@ -45,7 +45,7 @@ public class Application {
             Task<String> task = new Task<>(
                     UUID.randomUUID(),
                     taskGroups.get(taskGroupCounter),
-                    TaskType.READ,
+                    i%2==0?TaskType.READ:TaskType.WRITE,
                     () -> new Load().generateRandomString(taskGroups.get(reference.get())));
             futures.add(new TaskExecutorImpl().submitTask(task));
             System.out.println("Submitted task :" + task.taskUUID()  + " Group :" +task.taskGroup().groupUUID());
